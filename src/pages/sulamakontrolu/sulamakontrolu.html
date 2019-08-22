@@ -1,0 +1,105 @@
+<!--
+  Generated template for the SulamakontroluPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu" style="color:black"></ion-icon>
+      </button>
+      <ion-title >Sera Otomasyonu</ion-title>
+      <ion-buttons end>
+      
+        <button   ion-button   outline style="background-color:#F8F8F8" (click)="SayfaYenile()"> YENİLE</button>
+      
+      </ion-buttons>
+
+    </ion-navbar>
+  </ion-header>
+  
+
+<ion-content padding style="background-color:lavender">
+    <ion-card style="text-align:center">
+
+        <ion-card-header style="text-align:center;font-size: 22px;color:black">
+            <ion-icon name="water" style="color:deepskyblue;"></ion-icon> Sulama Kontrolü
+          </ion-card-header>
+      
+      </ion-card>
+
+
+    <ion-card style="background-color:transparent">
+
+        <ion-card-header style="background-color:cornflowerblue">
+          Şu anki Toprak Nem Değeri:{{sonTnem}}
+        </ion-card-header>
+      
+        <ion-card-header *ngIf="spDurum==true" style="background-color:cornflowerblue;margin-top: 10px;">
+         Sulama Durumu:Açık
+        </ion-card-header>
+        <ion-card-header *ngIf="spDurum==false" style="background-color:cornflowerblue;margin-top: 10px;">
+          Sulama Durumu:Kapalı
+         </ion-card-header>
+      
+      </ion-card>
+      <ion-card style="background-color:transparent">
+
+          <ion-card-header style="background-color:cornflowerblue">
+           Toprak Nem Limiti:{{tNemLimit}}
+          </ion-card-header>
+         
+        
+          <ion-card-header *ngIf="tNemLimitDurum==false" style="background-color:cornflowerblue;margin-top: 10px;">
+            Limit şu anda pasif durumdadır.<br>Limit değerini girerek aktif yapabilirsiniz.
+        </ion-card-header>
+        <ion-card-header *ngIf="tNemLimitDurum==true" style="background-color:cornflowerblue;margin-top: 10px;">
+        Limit şu anda aktif durumdadır.<br>Fanları kapatarak veya açarak pasif yapabilirsiniz.
+      </ion-card-header>
+        </ion-card>
+
+      
+        
+          <ion-card style="background-color:transparent">
+
+              <ion-card-header>
+              Toprak Nem limitini aşağıdan istediğniz<br>
+               gibi belirleyebilirsiniz.
+              </ion-card-header>
+            
+              <ion-card-content>
+                  <form (ngSubmit)="ToprakNemLimiti()">
+                      <ion-grid>
+                          <ion-row>
+                            <ion-col col-8> <ion-list>
+      
+                                <ion-item>
+                                    <ion-input pattern="[0-9]*" placeholder="Limit"   [(ngModel)]="ToprakNem.limit"   name="limit" required></ion-input>
+
+                                 </ion-item>
+                              
+                                
+                              
+                              </ion-list>
+                            </ion-col>
+                            <ion-col col-4 style="margin-top:-5px;">
+                                <button ion-button type="submit" block>Gönder</button> 
+                               </ion-col>
+                          </ion-row>
+                        
+                        </ion-grid>
+                 
+                </form>
+              </ion-card-content>
+            
+            </ion-card>
+
+            <button *ngIf="spDurum==true" (click)="SulamaDurum(0)" style="margin-top:30px;" color="secondary"  ion-button  full>Sulamayı Kapat</button>
+            <button *ngIf="spDurum==false" (click)="SulamaDurum(1)" style="margin-top:30px;" color="secondary"  ion-button  full>Sulamayı Aç</button>
+
+
+            <button style="margin-top:10px;" (click)="SulamaListesi()" color="secondary" ion-button full>Verileri Liste Halinde Göster</button>
+
+          
+</ion-content>
